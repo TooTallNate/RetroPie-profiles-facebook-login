@@ -27,7 +27,7 @@
   "homepage": "https://github.com/TooTallNate/RetroPie-profiles-facebook-login#readme",
   "dependencies": {
     "debug": "^2.3.3",
-    "n8-server": "^2.2.0",
+    "n8-server": "^2.3.0",
     "node-fetch": "^1.6.3",
     "retropie-profiles-server": "^1.0.0"
   }
