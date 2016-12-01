@@ -10,12 +10,19 @@ const debug = require('debug')('RetroPie-profiles-facebook-login')
 
 const client_id = process.env.FACEBOOK_CLIENT_ID
 const client_secret = process.env.FACEBOOK_CLIENT_SECRET;
-const redirect_uri = process.env.FACEBOOK_REDIRECT_URI
+
+let redirect_uri = process.env.FACEBOOK_REDIRECT_URI || process.env.NOW_URL
 
 if (!client_id || !client_secret || !redirect_uri) {
   console.error('`FACEBOOK_CLIENT_ID`, `FACEBOOK_CLIENT_SECRET` and `FACEBOOK_REDIRECT_URI` env vars must be defined!')
   process.exit(1)
 }
+
+redirect_uri = parse(redirect_uri)
+redirect_uri.pathname = '/callback'
+redirect_uri = format(redirect_uri)
+
+console.log('Please ensure that %j is a whitelisted Callback URL in your Facebook App settings!', redirect_uri)
 
 module.exports = async function (req, res) {
   const parsed = parse(req.url, true)
