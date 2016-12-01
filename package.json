@@ -1,0 +1,34 @@
+{
+  "name": "retropie-profiles-facebook-login",
+  "version": "0.0.0",
+  "description": "RetroPie-profiles Login Server using Facebook Login",
+  "main": "server.js",
+  "scripts": {
+    "start": "n8-server --harmony-async-await retropie-profiles-server server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/TooTallNate/RetroPie-profiles-facebook-login.git"
+  },
+  "keywords": [
+    "retropie",
+    "profiles",
+    "login",
+    "server",
+    "facebook",
+    "login",
+    "oauth"
+  ],
+  "author": "Nathan Rajlich <n@n8.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TooTallNate/RetroPie-profiles-facebook-login/issues"
+  },
+  "homepage": "https://github.com/TooTallNate/RetroPie-profiles-facebook-login#readme",
+  "dependencies": {
+    "debug": "^2.3.3",
+    "n8-server": "^2.2.0",
+    "node-fetch": "^1.6.3",
+    "retropie-profiles-server": "^1.0.0"
+  }
+}
