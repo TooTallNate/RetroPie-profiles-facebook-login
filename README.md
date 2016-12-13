@@ -8,8 +8,8 @@ your Facebook profile, which a lot of people are already logged in
 to on their mobile devices.
 
 Note that this _does not_ save your files on Facebook or in the cloud
-in any way. You can easily set that up yourself though using something
-like `sshfs` for an SSH server, or maybe `s3fs` for storing save files
+in any way. However, you can easily set that up yourself using
+something like `sshfs` for an SSH server, or maybe `s3fs` for storing save files
 on Amazon S3.
 
 Deploy
@@ -17,6 +17,18 @@ Deploy
 
 You can easily deploy your own instance without even cloning the code.
 Make sure you have [now][] installed.
+
+ 1. Go to the Facebook Developer page and create a new "app".
+ 1. Make sure to enable "Facebook Login", and add a callback URL that you would
+    like to use.
+ 1. ```bash
+    $ now TooTallNate/retropie-profiles-facebook-login`
+    ```
+ 1. You will get a new URL for the deployment. Copy that and use it in the `alias`
+    command like so:
+    ```bash
+    $ now alias <deployment URL> <callback URL>
+    ```
 
 License
 -------
