@@ -29,7 +29,7 @@ even cloning the code:
 
 1. Go to the [Facebook Developer](https://developers.facebook.com/apps/) page and create a new "app".
 1. Make sure to enable "Facebook Login", and _add the **OAuth redirect URI**_,
-   which MUST be `<login server URL>/callback`
+   which MUST be `<login server URL>/callback`.
 1. [Download `now`](https://zeit.co/download).
 1. Run the following command. Be sure to replace the three variables with their
    proper values from the Facebook App page!
@@ -48,8 +48,9 @@ even cloning the code:
     $ now alias <deployment URL> <login server URL>
     ```
 
-Now when RetroPie-profiles prompts you for the Login Server URL, entry the
-callback URL that has been set up.
+Now when RetroPie-profiles prompts you for the Login Server URL, enter the
+login server URL that you decided on, and then visit that URL on your mobile
+device. When Facebook prompts for app apprival, click `Approve`!
 
 
 License
