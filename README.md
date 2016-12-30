@@ -16,26 +16,36 @@ on Amazon S3.
 Deploy
 ------
 
-You can easily deploy your own instance without even cloning the code:
+The first step is to determine which URL will enter for the Login Server
+URL on RetroPie-profiles, as well as the URL that you will visit on your
+mobile device to log in. This can either be a (sub)domain that you own, or a
+free subdomain from `.now.sh` (so for example `https://nates-login-server.now.sh`).
+
+See the [Zeit "alias" page](https://zeit.co/world#2.-alias-your-deployments) for
+more details on deploying with a custom domain name.
+
+Now that you've picked a URL, you can easily deploy your own instance without
+even cloning the code:
 
 1. Go to the [Facebook Developer](https://developers.facebook.com/apps/) page and create a new "app".
-1. Make sure to enable "Facebook Login", and _add a **callback URL**_ that
-   you would like to use. This is the URL that you will enter as the Login Server
-   URL for your RetroPie-profiles, as well as the URL that you will visit on your
-   mobile device to log in. This can either be a (sub)domain that you own, or a
-   subdomain from `.now.sh` (so for example `https://nates-login-server.now.sh`).
+1. Make sure to enable "Facebook Login", and _add the **OAuth redirect URI**_,
+   which MUST be `<deployment URL>/callback`
 1. [Download `now`](https://zeit.co/download).
-1. Run:
+1. Run the following command. Be sure to replace the three variables with their
+   proper values from the Facebook App page!
 
     ```bash
-    $ now TooTallNate/retropie-profiles-facebook-login
+    $ now TooTallNate/retropie-profiles-facebook-login \
+        -e FACEBOOK_CLIENT_ID=<client id> \
+        -e FACEBOOK_CLIENT_SECRET=<client secret> \
+        -e FACEBOOK_REDIRECT_URI=<redirect URI>
     ```
 
 1. You will get a new URL for the deployment. Copy that and use it in the
    `alias` command like so:
 
     ```bash
-    $ now alias <deployment URL> <callback URL>
+    $ now alias <unique deployment URL> <login server URL>
     ```
 
 Now when RetroPie-profiles prompts you for the Login Server URL, entry the
