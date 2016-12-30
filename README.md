@@ -17,19 +17,19 @@ Deploy
 
 You can easily deploy your own instance without even cloning the code:
 
- 1. Go to the Facebook Developer page and create a new "app".
- 1. Make sure to enable "Facebook Login", and add a callback URL that
- you would like to use.
- 1. [Download `now`](https://zeit.co/download).
- 1. Run:
- ```bash
- $ now TooTallNate/retropie-profiles-facebook-login
- ```
- 1. You will get a new URL for the deployment. Copy that and use it in the
- `alias` command like so:
- ```bash
- $ now alias <deployment URL> <callback URL>
- ```
+1. Go to the Facebook Developer page and create a new "app".
+1. Make sure to enable "Facebook Login", and add a callback URL that
+   you would like to use.
+1. [Download `now`](https://zeit.co/download).
+1. Run:
+    ```bash
+    $ now TooTallNate/retropie-profiles-facebook-login
+    ```
+1. You will get a new URL for the deployment. Copy that and use it in the
+   `alias` command like so:
+    ```bash
+    $ now alias <deployment URL> <callback URL>
+    ```
 
 License
 -------
