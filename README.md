@@ -22,11 +22,14 @@ You can easily deploy your own instance without even cloning the code:
    you would like to use.
 1. [Download `now`](https://zeit.co/download).
 1. Run:
+
     ```bash
     $ now TooTallNate/retropie-profiles-facebook-login
     ```
+
 1. You will get a new URL for the deployment. Copy that and use it in the
    `alias` command like so:
+
     ```bash
     $ now alias <deployment URL> <callback URL>
     ```
