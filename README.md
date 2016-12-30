@@ -22,7 +22,8 @@ You can easily deploy your own instance without even cloning the code:
 1. Make sure to enable "Facebook Login", and _add a **callback URL**_ that
    you would like to use. This is the URL that you will enter as the Login Server
    URL for your RetroPie-profiles, as well as the URL that you will visit on your
-   mobile device to log in.
+   mobile device to log in. This can either be a (sub)domain that you own, or a
+   subdomain from `.now.sh` (so for example `https://nates-login-server.now.sh`).
 1. [Download `now`](https://zeit.co/download).
 1. Run:
 
