@@ -12,14 +12,17 @@ in any way. However, you can easily set that up yourself using
 something like `sshfs` for an SSH server, or maybe `s3fs` for storing save files
 on Amazon S3.
 
+
 Deploy
 ------
 
 You can easily deploy your own instance without even cloning the code:
 
-1. Go to the Facebook Developer page and create a new "app".
-1. Make sure to enable "Facebook Login", and add a callback URL that
-   you would like to use.
+1. Go to the [Facebook Developer](https://developers.facebook.com/apps/) page and create a new "app".
+1. Make sure to enable "Facebook Login", and _add a **callback URL**_ that
+   you would like to use. This is the URL that you will enter as the Login Server
+   URL for your RetroPie-profiles, as well as the URL that you will visit on your
+   mobile device to log in.
 1. [Download `now`](https://zeit.co/download).
 1. Run:
 
@@ -33,6 +36,10 @@ You can easily deploy your own instance without even cloning the code:
     ```bash
     $ now alias <deployment URL> <callback URL>
     ```
+
+Now when RetroPie-profiles prompts you for the Login Server URL, entry the
+callback URL that has been set up.
+
 
 License
 -------
