@@ -4,7 +4,7 @@
   "description": "RetroPie-profiles Login Server using Facebook Login",
   "main": "server.js",
   "scripts": {
-    "start": "n8-server --harmony-async-await retropie-profiles-server server.js"
+    "start": "n8-server retropie-profiles-server server.js"
   },
   "repository": {
     "type": "git",
