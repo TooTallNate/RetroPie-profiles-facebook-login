@@ -30,5 +30,8 @@
     "n8-server": "^2.3.0",
     "node-fetch": "^1.6.3",
     "retropie-profiles-server": "^1.0.0"
+  },
+  "engines": {
+    "node": "8"
   }
 }
