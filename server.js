@@ -9,12 +9,14 @@ const { Redirect } = require('n8-server')
 const debug = require('debug')('RetroPie-profiles-facebook-login')
 
 const client_id = process.env.FACEBOOK_CLIENT_ID
-const client_secret = process.env.FACEBOOK_CLIENT_SECRET;
+const client_secret = process.env.FACEBOOK_CLIENT_SECRET
 
 let redirect_uri = process.env.FACEBOOK_REDIRECT_URI || process.env.NOW_URL
 
 if (!client_id || !client_secret || !redirect_uri) {
-  console.error('`FACEBOOK_CLIENT_ID`, `FACEBOOK_CLIENT_SECRET` and `FACEBOOK_REDIRECT_URI` env vars must be defined!')
+  console.error(
+    '`FACEBOOK_CLIENT_ID`, `FACEBOOK_CLIENT_SECRET` and `FACEBOOK_REDIRECT_URI` env vars must be defined!'
+  )
   process.exit(1)
 }
 
@@ -22,9 +24,12 @@ redirect_uri = parse(redirect_uri)
 redirect_uri.pathname = '/callback'
 redirect_uri = format(redirect_uri)
 
-console.log('Please ensure that %j is a whitelisted Callback URL in your Facebook App settings!', redirect_uri)
+console.log(
+  'Please ensure that %j is a whitelisted Callback URL in your Facebook App settings!',
+  redirect_uri
+)
 
-module.exports = async function (req, res) {
+module.exports = async function(req, res) {
   const parsed = parse(req.url, true)
 
   if ('/callback' === parsed.pathname) {
@@ -51,7 +56,6 @@ module.exports = async function (req, res) {
 
     res.setHeader('Content-Type', 'text/plain; charset=utf8')
     return `Logged in as ${me.name}. Play 🕹`
-
   } else {
     // otherwise initiate the Facebook Login flow
     const url = facebookOAuthDialogURL({
@@ -72,7 +76,9 @@ function facebookOAuthDialogURL(query) {
 
 async function facebookLogin(code, params) {
   const query = Object.assign({ code }, params)
-  const url = `https://graph.facebook.com/v2.7/oauth/access_token?${ qs.stringify(query) }`
+  const url = `https://graph.facebook.com/v2.7/oauth/access_token?${qs.stringify(
+    query
+  )}`
   debug('facebook access token URL: %o', url)
 
   const res = await fetch(url)
@@ -86,7 +92,7 @@ async function facebookLogin(code, params) {
 
 function fbreq(path, access_token, ...extras) {
   const query = { access_token }
-  const url = `https://graph.facebook.com/v2.7${path}?${ qs.stringify(query) }`
+  const url = `https://graph.facebook.com/v2.7${path}?${qs.stringify(query)}`
   debug('facebook request %o', path)
   return fetch(url, ...extras)
 }
