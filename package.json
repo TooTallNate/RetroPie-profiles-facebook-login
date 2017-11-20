@@ -33,5 +33,12 @@
   },
   "engines": {
     "node": "8"
+  },
+  "now": {
+    "env": {
+      "FACEBOOK_CLIENT_ID": "@rp-facebook-client-id",
+      "FACEBOOK_CLIENT_SECRET": "@rp-facebook-client-secret",
+      "FACEBOOK_REDIRECT_URI": "@rp-facebook-redirect-uri"
+    }
   }
 }
