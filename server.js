@@ -55,7 +55,12 @@ module.exports = retropieProfiles(async function(req, res, login) {
     const hosts = login(me)
 
     res.setHeader('Content-Type', 'text/plain; charset=utf8')
-    return `Logged in as ${me.name} on ${hosts.join(', ')}. Play 🕹`
+    if (hosts) {
+      return `Logged in as ${me.name} on ${hosts.join(', ')}. Play 🕹`
+    } else {
+      res.statusCode = 400
+      return `Failed to log in as ${me.name} because there are no login windows connected ☹️`
+    }
   } else {
     // otherwise initiate the Facebook Login flow
     const url = facebookOAuthDialogURL({
