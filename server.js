@@ -5,7 +5,7 @@
 const qs = require('querystring')
 const fetch = require('node-fetch')
 const { parse, format } = require('url')
-const { Redirect } = require('n8-server')
+const retropieProfiles = require('retropie-profiles-server')
 const debug = require('debug')('RetroPie-profiles-facebook-login')
 
 const client_id = process.env.FACEBOOK_CLIENT_ID
@@ -29,7 +29,7 @@ console.log(
   redirect_uri
 )
 
-module.exports = async function(req, res) {
+module.exports = retropieProfiles(async function(req, res, login) {
   const parsed = parse(req.url, true)
 
   if ('/callback' === parsed.pathname) {
@@ -38,33 +38,36 @@ module.exports = async function(req, res) {
       throw new OAuthError(parsed.query.error)
     }
 
-    const login = await facebookLogin(parsed.query.code, {
+    const auth = await facebookLogin(parsed.query.code, {
       client_id,
       client_secret,
       redirect_uri
     })
-    debug('login: %o', login)
+    debug('auth: %o', auth)
 
-    const r = await fbreq('/me', login.access_token)
+    const r = await fbreq('/me', auth.access_token)
     const me = await r.json()
     debug('me: %o', me)
 
     // the object passed in will be converted to env variables
     // that the login script uses.
     // `id` and `name` are required properties!
-    res.emit('login', me)
+    const hosts = login(me)
 
     res.setHeader('Content-Type', 'text/plain; charset=utf8')
-    return `Logged in as ${me.name}. Play 🕹`
+    return `Logged in as ${me.name} on ${hosts.join(', ')}. Play 🕹`
   } else {
     // otherwise initiate the Facebook Login flow
     const url = facebookOAuthDialogURL({
       client_id,
       redirect_uri
     })
-    throw new Redirect(url)
+
+    res.setHeader('Location', url)
+    res.statusCode = 302
+    res.end()
   }
-}
+})
 
 function facebookOAuthDialogURL(query) {
   const parsed = parse('https://www.facebook.com/v2.7/dialog/oauth')
